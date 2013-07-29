@@ -1,4 +1,4 @@
-???<Properties>
+﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.Workbench ActiveDocument="../../../jenkins/workspace/libgdx-mac/backends/gdx-backend-iosmonotouch/src/com/badlogic/gdx/backends/ios/IOSApplication.java">
     <Files>
