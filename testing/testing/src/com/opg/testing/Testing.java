@@ -1,66 +1,52 @@
 package com.opg.testing;
 
-import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.opg.testing.core.Assets;
+import com.opg.testing.screens.TestingTitleScreen;
 
-public class Testing implements ApplicationListener {
-	private OrthographicCamera camera;
-	private SpriteBatch batch;
-	private Texture texture;
-	private Sprite sprite;
+public class Testing extends Game {
+	@Override
+	public void create() {
+		Gdx.input.setCursorCatched(true);
+		
+		// TODO should this go here or somewhere else?
+		// TODO manage assets on a screen-by-screen basis?
+		Assets.loadAssets();
+		
+		setScreen(new TestingTitleScreen(this, Constants.Game.FRAME_WIDTH, Constants.Game.FRAME_HEIGHT));
+	}
 	
 	@Override
-	public void create() {		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		
-		camera = new OrthographicCamera(1, h/w);
-		batch = new SpriteBatch();
-		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
-	}
-
-	@Override
 	public void dispose() {
-		batch.dispose();
-		texture.dispose();
+		// TODO Really no need for this until we manage assets on a screen-by-screen basis.
+		Assets.dispose();
 	}
-
-	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+	
+	public static class Constants {
+		public static class Game {
+			public static final String TITLE = "Testing";
+			
+			// TODO handle different screen sizes better
+			public static final float ASPECT_RATIO = 10 / 16f;
+			public static final int FRAME_WIDTH = 1280;
+			public static final int FRAME_HEIGHT = (int) (FRAME_WIDTH * ASPECT_RATIO);
+			
+			public static final float PLAYER_SIZE = 100f;
+			
+			public static final float MONSTER_SIZE_MIN = 25f;
+			public static final float MONSTER_SIZE_MAX = 175f;
+			
+			public static final float MONSTER_SPEED_MIN = 25f;
+			public static final float MONSTER_SPEED_MAX = 100f;
+			
+			public static final boolean ALLOW_PLAYER_TELEPORTING = false;
+			public static final float TELEPORT_BUFFER_DISTANCE = PLAYER_SIZE / 3f;
+		}
 		
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
-	}
-
-	@Override
-	public void resize(int width, int height) {
-	}
-
-	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
+		public static class Groups {
+			public static final String PLAYER = "player";
+			public static final String MONSTER = "monster";
+		}
 	}
 }

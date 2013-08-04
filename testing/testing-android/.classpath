@@ -9,6 +9,7 @@
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/testing/libs/bodyeditor-loader.jar" sourcepath="/testing/libs/bodyeditor-loader-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/testing/libs/tween-engine-api.jar" sourcepath="/testing/libs/tween-engine-api-sources.jar"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="lib" path="/testing/libs/artemis-core-1.0.0-OPG-SNAPSHOT.jar" sourcepath="/testing/libs/artemis-core-1.0.0-OPG-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
